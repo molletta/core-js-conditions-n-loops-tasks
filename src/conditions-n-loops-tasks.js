@@ -21,8 +21,9 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  const sign = Math.sign(number);
+  return sign >= 0;
 }
 
 /**
@@ -38,8 +39,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b || a > c) {
+    return a;
+  }
+  if (b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -82,8 +89,17 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) {
+    return false;
+  }
+  if (a + b < c || b + c < a || a + c < b) {
+    return false;
+  }
+  if (a === b || a === c || b === c) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -100,8 +116,58 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const unit = num % 10;
+  const dozen = (num - unit) / 10;
+
+  let unitToRoman;
+  let dozenToRoman;
+
+  switch (dozen) {
+    case 1:
+      dozenToRoman = 'X';
+      break;
+    case 2:
+      dozenToRoman = 'XX';
+      break;
+    case 3:
+      dozenToRoman = 'XXX';
+      break;
+    default:
+      dozenToRoman = '';
+  }
+  switch (unit) {
+    case 1:
+      unitToRoman = 'I';
+      break;
+    case 2:
+      unitToRoman = 'II';
+      break;
+    case 3:
+      unitToRoman = 'III';
+      break;
+    case 4:
+      unitToRoman = 'IV';
+      break;
+    case 5:
+      unitToRoman = 'V';
+      break;
+    case 6:
+      unitToRoman = 'VI';
+      break;
+    case 7:
+      unitToRoman = 'VII';
+      break;
+    case 8:
+      unitToRoman = 'VIII';
+      break;
+    case 9:
+      unitToRoman = 'IX';
+      break;
+    default:
+      unitToRoman = '';
+  }
+  return dozenToRoman + unitToRoman;
 }
 
 /**
